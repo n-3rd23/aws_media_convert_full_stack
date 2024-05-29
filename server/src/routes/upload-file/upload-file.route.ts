@@ -19,4 +19,8 @@ router.route("/complete").post(async (req, res) => {
   });
 });
 
+router.route("/test").get((req, res) => {
+  res.send("ok");
+});
+
 export default router;

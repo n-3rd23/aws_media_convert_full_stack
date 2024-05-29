@@ -1,12 +1,11 @@
 import { MediaConvert } from "@aws-sdk/client-mediaconvert";
 import * as fs from "fs";
 
-const REGION = process.env.S3_REGION as string;
 const DESTINATION = "s3://armiamediaconvertbucket/system_converted/";
 
 export const startJob = async (input: string) => {
   const mediaConvert = new MediaConvert({
-    region: REGION,
+    region: process.env.S3_REGION,
     credentials: {
       accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,

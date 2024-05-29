@@ -1,1 +1,67 @@
-{"event":{"version":"0","id":"82c53099-3b81-c2db-b0e2-ba08e52916ea","detail-type":"MediaConvert Job State Change","source":"aws.mediaconvert","account":"590183874188","time":"2024-05-27T12:32:32Z","region":"ap-south-1","resources":["arn:aws:mediaconvert:ap-south-1:590183874188:jobs/1716813078578-ezim6m"],"detail":{"timestamp":1716813152070,"accountId":"590183874188","queue":"arn:aws:mediaconvert:ap-south-1:590183874188:queues/Default","jobId":"1716813078578-ezim6m","status":"COMPLETE","userMetadata":{},"outputGroupDetails":[{"outputDetails":[{"outputFilePaths":["s3://armiamediaconvertbucket/new_convert/Zack Snyder_s Justice Leagueconverted.m3u8"],"durationInMs":340006,"videoDetails":{"widthInPx":1280,"heightInPx":720,"averageBitrate":2714885,"qvbrAvgQuality":9.32,"qvbrMinQuality":6,"qvbrMaxQuality":10,"qvbrMinQualityLocation":80955,"qvbrMaxQualityLocation":0}}],"playlistFilePaths":["s3://armiamediaconvertbucket/new_convert/Zack Snyder_s Justice League.m3u8"],"type":"HLS_GROUP"}],"paddingInserted":0,"blackVideoDetected":4713,"blackVideoSegments":[{"start":0,"end":1793},{"start":330246,"end":330913},{"start":334083,"end":334125},{"start":337795,"end":340006}]}},"context":{"callbackWaitsForEmptyEventLoop":true,"functionVersion":"$LATEST","functionName":"myLambdaFunction","memoryLimitInMB":"128","logGroupName":"/aws/lambda/myLambdaFunction","logStreamName":"2024/05/27/[$LATEST]f2a20ea5154244f6a4273eba4cb0dd8d","invokedFunctionArn":"arn:aws:lambda:ap-south-1:590183874188:function:myLambdaFunction","awsRequestId":"9bca31ac-b10e-4e62-b7cf-0de22f9adbec"}}
+{
+  "event": {
+    "version": "0",
+    "id": "8c120fbb-5384-89b2-f32c-0833b3ff0db8",
+    "detail-type": "MediaConvert Job State Change",
+    "source": "aws.mediaconvert",
+    "account": "590183874188",
+    "time": "2024-05-29T04:52:09Z",
+    "region": "ap-south-1",
+    "resources": [
+      "arn:aws:mediaconvert:ap-south-1:590183874188:jobs/1716958318497-tgqw7g"
+    ],
+    "detail": {
+      "timestamp": 1716958329031,
+      "accountId": "590183874188",
+      "queue": "arn:aws:mediaconvert:ap-south-1:590183874188:queues/Default",
+      "jobId": "1716958318497-tgqw7g",
+      "status": "COMPLETE",
+      "userMetadata": {
+        "content_id": "65e7fda88e3cb8c0e8e561a4",
+        "other_details": "sample sample data here"
+      },
+      "outputGroupDetails": [
+        {
+          "outputDetails": [
+            {
+              "outputFilePaths": [
+                "s3://armiamediaconvertbucket/system_converted/1716958319537_custom_name.m3u8"
+              ],
+              "durationInMs": 5280,
+              "videoDetails": {
+                "widthInPx": 1280,
+                "heightInPx": 720,
+                "averageBitrate": 2081707,
+                "qvbrAvgQuality": 8.93,
+                "qvbrMinQuality": 8,
+                "qvbrMaxQuality": 10,
+                "qvbrMinQualityLocation": 160,
+                "qvbrMaxQualityLocation": 4080
+              }
+            }
+          ],
+          "playlistFilePaths": [
+            "s3://armiamediaconvertbucket/system_converted/1716958319537.m3u8"
+          ],
+          "type": "HLS_GROUP"
+        }
+      ],
+      "paddingInserted": 0,
+      "blackVideoDetected": 0,
+      "warnings": [
+        { "code": 230001, "count": 1 },
+        { "code": 230005, "count": 1 }
+      ]
+    }
+  },
+  "context": {
+    "callbackWaitsForEmptyEventLoop": true,
+    "functionVersion": "$LATEST",
+    "functionName": "myLambdaFunction",
+    "memoryLimitInMB": "128",
+    "logGroupName": "/aws/lambda/myLambdaFunction",
+    "logStreamName": "2024/05/29/[$LATEST]be54160c6afb4ba891e0ac8de24df4a3",
+    "invokedFunctionArn": "arn:aws:lambda:ap-south-1:590183874188:function:myLambdaFunction",
+    "awsRequestId": "14abbbe2-f930-4c97-a04c-1c7b4cd5b8b2"
+  }
+}
