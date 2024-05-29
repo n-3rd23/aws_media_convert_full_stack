@@ -17,11 +17,13 @@ export const startJob = async (input: string) => {
     Settings: {
       OutputGroups: [
         {
-          Name: "File Group",
+          Name: "Apple HLS",
           OutputGroupSettings: {
-            Type: "FILE_GROUP_SETTINGS",
-            FileGroupSettings: {
-              Destination: DESTINATION, // update with destination
+            Type: "HLS_GROUP_SETTINGS",
+            HlsGroupSettings: {
+              SegmentLength: 10,
+              MinSegmentLength: 0,
+              Destination: DESTINATION,
             },
           },
           Outputs: [
@@ -32,7 +34,7 @@ export const startJob = async (input: string) => {
                   H264Settings: {
                     RateControlMode: "QVBR",
                     SceneChangeDetect: "TRANSITION_DETECTION",
-                    MaxBitrate: 4000000, // THE BIT RATE
+                    MaxBitrate: 5000000,
                   },
                 },
               },
@@ -48,11 +50,14 @@ export const startJob = async (input: string) => {
                   },
                 },
               ],
-              ContainerSettings: {
-                Container: "MP4",
-                Mp4Settings: {},
+              OutputSettings: {
+                HlsSettings: {},
               },
-              NameModifier: "_converted_file", // file name modifier
+              ContainerSettings: {
+                Container: "M3U8",
+                M3u8Settings: {},
+              },
+              NameModifier: "_custom_name",
             },
           ],
           CustomName: "_the_converted", // job custom name

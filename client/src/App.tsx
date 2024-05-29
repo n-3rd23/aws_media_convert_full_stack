@@ -6,6 +6,7 @@ import axiosInstance from "./utils/axios-instance";
 
 function App() {
   const [isUploading, setIsUploading] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string>("");
 
   const uploadToS3 = async (event: ChangeEvent<HTMLInputElement>) => {
     try {
@@ -20,7 +21,8 @@ function App() {
         file
       );
       if (uploaded?.path) {
-        await uploadVideo(uploaded?.path);
+        setVideoSrc(uploaded.path);
+        await uploadVideo(uploaded.path);
       }
     } catch (err) {
       console.error("s3 error::", err);
@@ -59,7 +61,8 @@ function App() {
       <p>{isUploading && "Uploading...."}</p>
       {/* can play either mp4 or hsl videos */}
       {/* <Video src="https://armiamediaconvertbucket.s3.ap-south-1.amazonaws.com/new_convert/Zack+Snyder_s+Justice+Leagueconverted.m3u8" /> */}
-      <Video src="https://armiamediaconvertbucket.s3.ap-south-1.amazonaws.com/uploads/Zack+Snyder_s+Justice+League.mp4" />
+      {/* <Video src="https://armiamediaconvertbucket.s3.ap-south-1.amazonaws.com/uploads/Zack+Snyder_s+Justice+League.mp4" /> */}
+      {videoSrc.length ? <Video src={videoSrc} /> : null}
     </div>
   );
 }

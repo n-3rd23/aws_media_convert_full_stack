@@ -19,12 +19,6 @@ export default function Video({ src }: any) {
         ],
       });
     }
-
-    // return () => {
-    //   if (player) {
-    //     player.dispose();
-    //   }
-    // };
   }, []);
 
   return (

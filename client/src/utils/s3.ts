@@ -4,13 +4,13 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 
-const REGION = import.meta.env.S3_REGION;
+const REGION = import.meta.env.VITE_S3_REGION;
 
 const s3Client = new S3Client({
   region: REGION,
   credentials: {
-    accessKeyId: import.meta.env.S3_ACCESS_KEY_ID,
-    secretAccessKey: import.meta.env.S3_SECRET_ACCESS_KEY,
+    accessKeyId: import.meta.env.VITE_S3_ACCESS_KEY_ID,
+    secretAccessKey: import.meta.env.VITE_S3_SECRET_ACCESS_KEY,
   },
 });
 
