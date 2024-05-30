@@ -1,8 +1,9 @@
+import validateEnv from "@src/utils/validate-env";
+import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
-import cors from "cors";
-import validateEnv from "@src/utils/validate-env";
 import API_ROUTES from "./src/routes";
+require("@src/db/config");
 
 const app = express();
 
@@ -14,8 +15,8 @@ app.use(express.json());
 
 // routes;
 app.use("/api", API_ROUTES);
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
   console.log(`server listening on ${PORT} 🚀`);
 });

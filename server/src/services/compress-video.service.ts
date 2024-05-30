@@ -1,9 +1,11 @@
 import { MediaConvert } from "@aws-sdk/client-mediaconvert";
 import * as fs from "fs";
+import { Video } from "@src/db/models";
 
 const DESTINATION = "s3://armiamediaconvertbucket/system_converted/";
 
 export const startJob = async (input: string) => {
+  console.log("job started");
   const mediaConvert = new MediaConvert({
     region: process.env.S3_REGION,
     credentials: {
@@ -11,7 +13,9 @@ export const startJob = async (input: string) => {
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
     },
   });
-
+  const createdVideo = await Video.create({
+    video: "",
+  });
   const job = await mediaConvert.createJob({
     Settings: {
       OutputGroups: [
@@ -82,7 +86,7 @@ export const startJob = async (input: string) => {
     Role: "arn:aws:iam::590183874188:role/service-role/MediaConvert_Default_Role", // TODO: the role
     // passing metadata
     UserMetadata: {
-      content_id: "65e7fda88e3cb8c0e8e561a4",
+      content_id: createdVideo._id.toString(),
       other_details: "sample sample data here",
     },
   });
