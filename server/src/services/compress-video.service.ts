@@ -1,6 +1,7 @@
 import { MediaConvert } from "@aws-sdk/client-mediaconvert";
 import * as fs from "fs";
 import { Video } from "@src/db/models";
+import { ObjectId } from "mongodb";
 
 const DESTINATION = "s3://armiamediaconvertbucket/system_converted/";
 
@@ -14,7 +15,7 @@ export const startJob = async (input: string) => {
     },
   });
   const createdVideo = await Video.create({
-    video: "",
+    original_file: input,
   });
   const job = await mediaConvert.createJob({
     Settings: {
@@ -94,14 +95,21 @@ export const startJob = async (input: string) => {
 };
 
 export const getCallback = async (data: any) => {
-  console.log("upload completed");
   const dataJSON = JSON.stringify(data);
   fs.writeFileSync(`${__dirname}/../assets/data.json`, dataJSON, "utf-8");
-  const responseData = {
-    filePath:
-      data.event.detail.outputGroupDetails[0].outputDetails[0]
-        .outputFilePaths[0],
-    userMetaData: data.event.detail.userMetadata,
-  };
-  return responseData;
+  const filePath =
+    data.event.detail.outputGroupDetails[0].outputDetails[0].outputFilePaths[0];
+  const userMetaData = data.event.detail.userMetadata;
+
+  const updatedVideo = await Video.updateOne(
+    {
+      _id: userMetaData.content_id,
+    },
+    {
+      $set: {
+        converted_file: filePath,
+      },
+    }
+  );
+  return updatedVideo;
 };
