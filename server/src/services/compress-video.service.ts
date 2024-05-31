@@ -113,3 +113,15 @@ export const getCallback = async (data: any) => {
   );
   return updatedVideo;
 };
+
+export const getVideos = async () => {
+  const videos = await Video.find();
+  return videos;
+};
+
+export const getVideo = async (id: string) => {
+  const video = await Video.findOne({
+    _id: id,
+  });
+  return video;
+};
