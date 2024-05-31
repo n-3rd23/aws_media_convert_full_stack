@@ -1,7 +1,6 @@
 import { MediaConvert } from "@aws-sdk/client-mediaconvert";
-import * as fs from "fs";
 import { Video } from "@src/db/models";
-import { ObjectId } from "mongodb";
+import * as fs from "fs";
 
 const DESTINATION = "s3://armiamediaconvertbucket/system_converted/";
 
