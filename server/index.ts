@@ -1,4 +1,3 @@
-import validateEnv from "@src/utils/validate-env";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
@@ -12,7 +11,6 @@ require("@src/db/config");
 const app = express();
 
 dotenv.config();
-validateEnv();
 
 app.use(cors());
 app.use(express.json());
