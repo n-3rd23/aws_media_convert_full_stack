@@ -1,12 +1,10 @@
+import axiosInstance from "@/utils/axios-instance";
 import { uploadFile } from "@/utils/s3";
 import { ChangeEvent, useState } from "react";
-import Video from "@/components/video/video.component";
-import axiosInstance from "@/utils/axios-instance";
 import { Link } from "react-router-dom";
 
 function App() {
   const [isUploading, setIsUploading] = useState(false);
-  const [videoSrc, setVideoSrc] = useState<string>("");
 
   const uploadToS3 = async (event: ChangeEvent<HTMLInputElement>) => {
     try {
@@ -21,7 +19,6 @@ function App() {
         file
       );
       if (uploaded?.path) {
-        setVideoSrc(uploaded.path);
         await uploadVideo(uploaded.path);
       }
     } catch (err) {

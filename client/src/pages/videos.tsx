@@ -30,7 +30,9 @@ export default function Videos() {
     getVideos();
   }, []);
 
-  console.log(videos);
+  if (loading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <div>

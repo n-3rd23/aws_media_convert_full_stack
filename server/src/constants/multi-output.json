@@ -1,0 +1,103 @@
+{
+  "Queue": "arn:aws:mediaconvert:ap-south-1:590183874188:queues/Default",
+  "UserMetadata": {},
+  "Role": "arn:aws:iam::590183874188:role/service-role/MediaConvert_Default_Role",
+  "Settings": {
+    "TimecodeConfig": {
+      "Source": "ZEROBASED"
+    },
+    "OutputGroups": [
+      {
+        "CustomName": "1080",
+        "Name": "Apple HLS",
+        "Outputs": [
+          {
+            "Preset": "System-Avc_16x9_1080p_29_97fps_8500kbps",
+            "NameModifier": "_1080"
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "SegmentLength": 10,
+            "Destination": "s3://armiamediaconvertbucket/manual_convert/",
+            "MinSegmentLength": 0
+          }
+        }
+      },
+      {
+        "CustomName": "720",
+        "Name": "Apple HLS",
+        "Outputs": [
+          {
+            "Preset": "System-Avc_16x9_720p_29_97fps_5000kbps",
+            "NameModifier": "_720"
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "SegmentLength": 10,
+            "Destination": "s3://armiamediaconvertbucket/manual_convert/",
+            "MinSegmentLength": 0
+          }
+        }
+      },
+      {
+        "CustomName": "540",
+        "Name": "Apple HLS",
+        "Outputs": [
+          {
+            "Preset": "System-Avc_16x9_540p_29_97fps_3500kbps",
+            "NameModifier": "_540"
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "SegmentLength": 10,
+            "Destination": "s3://armiamediaconvertbucket/manual_convert/",
+            "MinSegmentLength": 0
+          }
+        }
+      },
+      {
+        "CustomName": "360",
+        "Name": "Apple HLS",
+        "Outputs": [
+          {
+            "Preset": "System-Avc_16x9_360p_29_97fps_600kbps",
+            "NameModifier": "_360"
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "SegmentLength": 10,
+            "Destination": "s3://armiamediaconvertbucket/manual_convert/",
+            "MinSegmentLength": 0
+          }
+        }
+      }
+    ],
+    "FollowSource": 1,
+    "Inputs": [
+      {
+        "AudioSelectors": {
+          "Audio Selector 1": {
+            "DefaultSelection": "DEFAULT"
+          }
+        },
+        "VideoSelector": {},
+        "TimecodeSource": "ZEROBASED",
+        "FileInput": "s3://armiamediaconvertbucket/system_uploads/1717155395741.mov"
+      }
+    ]
+  },
+  "BillingTagsSource": "JOB",
+  "AccelerationSettings": {
+    "Mode": "DISABLED"
+  },
+  "StatusUpdateInterval": "SECONDS_60",
+  "Priority": 0
+}

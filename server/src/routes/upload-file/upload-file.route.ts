@@ -14,8 +14,8 @@ router.route("/complete").post(completeJob);
 
 router.route("/").get(getVideos);
 
-router.route("/:id").get(getVideo);
-
 router.route("/test").get(test);
+
+router.route("/:id").get(getVideo);
 
 export default router;

@@ -20,50 +20,76 @@ export const startJob = async (input: string) => {
     Settings: {
       OutputGroups: [
         {
+          CustomName: "1080",
           Name: "Apple HLS",
+          Outputs: [
+            {
+              Preset: "System-Avc_16x9_1080p_29_97fps_8500kbps",
+              NameModifier: "_1080",
+            },
+          ],
           OutputGroupSettings: {
             Type: "HLS_GROUP_SETTINGS",
             HlsGroupSettings: {
               SegmentLength: 10,
-              MinSegmentLength: 0,
               Destination: DESTINATION,
+              MinSegmentLength: 0,
             },
           },
+        },
+        {
+          CustomName: "720",
+          Name: "Apple HLS",
           Outputs: [
             {
-              VideoDescription: {
-                CodecSettings: {
-                  Codec: "H_264",
-                  H264Settings: {
-                    RateControlMode: "QVBR",
-                    SceneChangeDetect: "TRANSITION_DETECTION",
-                    MaxBitrate: 5000000,
-                  },
-                },
-              },
-              AudioDescriptions: [
-                {
-                  CodecSettings: {
-                    Codec: "AAC",
-                    AacSettings: {
-                      Bitrate: 96000,
-                      CodingMode: "CODING_MODE_2_0",
-                      SampleRate: 48000,
-                    },
-                  },
-                },
-              ],
-              OutputSettings: {
-                HlsSettings: {},
-              },
-              ContainerSettings: {
-                Container: "M3U8",
-                M3u8Settings: {},
-              },
-              NameModifier: "_custom_name",
+              Preset: "System-Avc_16x9_720p_29_97fps_5000kbps",
+              NameModifier: "_720",
             },
           ],
-          CustomName: "_the_converted", // job custom name
+          OutputGroupSettings: {
+            Type: "HLS_GROUP_SETTINGS",
+            HlsGroupSettings: {
+              SegmentLength: 10,
+              Destination: DESTINATION,
+              MinSegmentLength: 0,
+            },
+          },
+        },
+        {
+          CustomName: "540",
+          Name: "Apple HLS",
+          Outputs: [
+            {
+              Preset: "System-Avc_16x9_540p_29_97fps_3500kbps",
+              NameModifier: "_540",
+            },
+          ],
+          OutputGroupSettings: {
+            Type: "HLS_GROUP_SETTINGS",
+            HlsGroupSettings: {
+              SegmentLength: 10,
+              Destination: DESTINATION,
+              MinSegmentLength: 0,
+            },
+          },
+        },
+        {
+          CustomName: "360",
+          Name: "Apple HLS",
+          Outputs: [
+            {
+              Preset: "System-Avc_16x9_360p_29_97fps_600kbps",
+              NameModifier: "_360",
+            },
+          ],
+          OutputGroupSettings: {
+            Type: "HLS_GROUP_SETTINGS",
+            HlsGroupSettings: {
+              SegmentLength: 10,
+              Destination: DESTINATION,
+              MinSegmentLength: 0,
+            },
+          },
         },
       ],
       TimecodeConfig: {
@@ -72,17 +98,18 @@ export const startJob = async (input: string) => {
       FollowSource: 1,
       Inputs: [
         {
-          TimecodeSource: "ZEROBASED",
-          VideoSelector: {},
           AudioSelectors: {
             "Audio Selector 1": {
               DefaultSelection: "DEFAULT",
             },
           },
-          FileInput: input, // input file
+          VideoSelector: {},
+          TimecodeSource: "ZEROBASED",
+          FileInput: input,
         },
       ],
     },
+    Queue: "arn:aws:mediaconvert:ap-south-1:590183874188:queues/Default",
     Role: "arn:aws:iam::590183874188:role/service-role/MediaConvert_Default_Role", // TODO: the role
     // passing metadata
     UserMetadata: {
@@ -96,8 +123,7 @@ export const startJob = async (input: string) => {
 export const getCallback = async (data: any) => {
   const dataJSON = JSON.stringify(data);
   fs.writeFileSync(`${__dirname}/../assets/data.json`, dataJSON, "utf-8");
-  const filePath =
-    data.event.detail.outputGroupDetails[0].outputDetails[0].outputFilePaths[0];
+  const filePath = data.event.detail.outputGroupDetails[0].playlistFilePaths[0];
   const userMetaData = data.event.detail.userMetadata;
 
   const updatedVideo = await Video.updateOne(
