@@ -6,7 +6,6 @@ export default function Video({ src }: any) {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    let player = null;
     if (videoRef.current) {
       player = videojs(videoRef.current, {
         controls: true,
