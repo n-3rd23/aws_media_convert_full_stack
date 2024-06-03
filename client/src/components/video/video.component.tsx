@@ -7,7 +7,7 @@ export default function Video({ src }: any) {
 
   useEffect(() => {
     if (videoRef.current) {
-      const player = videojs(videoRef.current, {
+      videojs(videoRef.current, {
         controls: true,
         autoplay: false,
         preload: "auto",
